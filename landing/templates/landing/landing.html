@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
 <meta name="theme-color" content="#0b0b0c">
+<meta name="enamad" content="15490256" />
 <title>سکه طلا</title>
 <meta name="description" content="رستوران فست‌فود سکه طلا - سفارش آنلاین با تحویل زیر ۲۰ دقیقه و کیفیت طلایی">
 
@@ -676,6 +677,31 @@
     font-size: .82rem;
   }
 
+  /* ========== Enamad Logo ========== */
+  .enamad-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 0 8px;
+  }
+  .enamad-wrap a {
+    display: inline-block;
+    line-height: 0;
+  }
+  .enamad-wrap img {
+    width: 110px !important;
+    height: auto !important;
+    max-width: none !important;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
+    transition: transform .3s var(--ease);
+  }
+  .enamad-wrap img:hover {
+    transform: scale(1.06);
+  }
+
   /* ========== Voice FAB ========== */
   .mic-fab {
     position: fixed;
@@ -1344,7 +1370,7 @@
       <div class="container">
         <div class="section-head reveal">
           <h2>محبوب‌ترین‌های منو</h2>
-          <p>طعم‌هایی که مشتریان سکه طلا بیشترین سفارش می‌دهند</p>
+          <p>طعم‌هایی که مشتریان سکه طلا بیشترین سفارش را می‌دهند</p>
         </div>
         <div class="menu-grid reveal-stagger">
           <article class="menu-card reveal" style="--i:0">
@@ -1453,6 +1479,12 @@
           </ul>
         </div>
       </div>
+
+      <!-- Enamad Logo (moved outside the grid) -->
+      <div class="enamad-wrap">
+            <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=8220382&Code=rvWLzrVjv9oEM3E7dm8sUMS2SBgeeMqI'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=8220382&Code=rvWLzrVjv9oEM3E7dm8sUMS2SBgeeMqI' alt='' style='cursor:pointer' code='rvWLzrVjv9oEM3E7dm8sUMS2SBgeeMqI'></a>
+      </div>
+
       <div class="footer-bottom">
         <span>© ۱۴۰۴ سکه طلا. تمامی حقوق محفوظ است.</span>
         <span>طراحی شده با ❤ برای عاشقان فست‌فود</span>
@@ -1597,7 +1629,6 @@
       function openModal() {
         voiceModal.classList.add('open');
         document.body.style.overflow = 'hidden';
-        // Focus on input
         setTimeout(function() {
           chatInput.focus();
         }, 400);
@@ -1606,7 +1637,6 @@
       function closeModal() {
         voiceModal.classList.remove('open');
         document.body.style.overflow = '';
-        // Stop recording if active
         if (isChatRecording) {
           stopChatRecording();
         }
@@ -1635,13 +1665,11 @@
       var isProcessing = false;
       var orderItems = [];
 
-      // Auto-resize textarea
       chatInput.addEventListener('input', function() {
         this.style.height = 'auto';
         this.style.height = Math.min(this.scrollHeight, 100) + 'px';
       });
 
-      // Send message on Enter (without Shift)
       chatInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
@@ -1649,7 +1677,6 @@
         }
       });
 
-      // Send message on button click
       sendBtn.addEventListener('click', sendMessage);
 
       // ===== Send Message =====
@@ -1657,7 +1684,6 @@
         var text = chatInput.value.trim();
         if (!text || isProcessing) return;
 
-        // Add user message
         addMessage('user', text);
         chatInput.value = '';
         chatInput.style.height = 'auto';
@@ -1666,11 +1692,9 @@
         micSmallBtn.disabled = true;
         isProcessing = true;
 
-        // Show loading
         chatLoading.classList.add('show');
         scrollToBottom();
 
-        // Send to chat API
         sendToChatAPI(text);
       }
 
@@ -1732,7 +1756,6 @@
           if (data.success && data.reply) {
             addMessage('system', data.reply);
 
-            // Check if order is complete
             if (data.order_complete && data.order_summary) {
               showOrderSummary(data.order_summary);
             }
@@ -1766,7 +1789,6 @@
           return;
         }
 
-        // Send confirmation to server
         fetch('/api/confirm-order', {
           method: 'POST',
           headers: {
@@ -1785,10 +1807,8 @@
         .then(function(data) {
           if (data.success) {
             showToast('🎉 سفارش شما با موفقیت ثبت شد! طلایی‌ها در راهند.', 4000);
-            // Add system message
             addMessage('system', '✅ سفارش شما ثبت شد! منتظر تحویل طلایی باشید. 🎉');
             orderSummary.classList.remove('show');
-            // Reset order items
             orderItems = [];
           } else {
             throw new Error(data.message || 'خطا در ثبت سفارش');
@@ -1903,88 +1923,72 @@
         }
       }
 
-// ===== Send Audio to Server =====
-function sendChatAudioToServer(audioBlob) {
-    var formData = new FormData();
-    formData.append('audio', audioBlob, 'recording.wav');
+      // ===== Send Audio to Server =====
+      function sendChatAudioToServer(audioBlob) {
+        var formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.wav');
 
-    // Show loading
-    chatLoading.classList.add('show');
-    isProcessing = true;
-    chatInput.disabled = true;
-    sendBtn.disabled = true;
-    micSmallBtn.disabled = true;
+        chatLoading.classList.add('show');
+        isProcessing = true;
+        chatInput.disabled = true;
+        sendBtn.disabled = true;
+        micSmallBtn.disabled = true;
 
-    // استفاده از مسیر کامل با اسلش آخر
-    const apiUrl = '/api/speech-to-text';  // حتماً با اسلش آخر
-    
-    console.log('Sending request to:', apiUrl);
-    console.log('FormData entries:');
-    for (let pair of formData.entries()) {
-        console.log(pair[0], pair[1]);
-    }
+        var apiUrl = '/api/speech-to-text/';
 
-    fetch(apiUrl, {
-        method: 'POST',
-        body: formData,
-        // اضافه کردن headers برای دیباگ
-        headers: {
+        console.log('Sending request to:', apiUrl);
+
+        fetch(apiUrl, {
+          method: 'POST',
+          body: formData,
+          headers: {
             'X-Requested-With': 'XMLHttpRequest',
-        }
-    })
-    .then(function(response) {
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-        
-        // ابتدا محتوای پاسخ را به صورت متن بگیرید
-        return response.text().then(function(text) {
+          }
+        })
+        .then(function(response) {
+          console.log('Response status:', response.status);
+          return response.text().then(function(text) {
             console.log('Raw response (first 500 chars):', text.substring(0, 500));
-            
-            // اگر پاسخ با <!DOCTYPE شروع شد، یعنی HTML برگشته
-            if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-                console.error('Server returned HTML instead of JSON');
-                throw new Error('سرور صفحه HTML برگردانده است. مسیر API اشتباه است یا خطای 500 رخ داده است.');
-            }
-            
-            // تلاش برای تبدیل به JSON
-            try {
-                var data = JSON.parse(text);
-                console.log('Parsed JSON:', data);
-                return data;
-            } catch (e) {
-                console.error('Failed to parse JSON:', text.substring(0, 200));
-                throw new Error('پاسخ سرور JSON معتبر نیست: ' + text.substring(0, 100));
-            }
-        });
-    })
-    .then(function(data) {
-        console.log('Speech-to-text response:', data);
-        
-        if (data.success && data.text) {
-            // Add the transcribed text as user message
-            addMessage('user', data.text);
-            // Then send to chat API
-            sendToChatAPI(data.text);
-        } else {
-            throw new Error(data.message || 'متن تبدیل شده دریافت نشد');
-        }
-    })
-    .catch(function(err) {
-        chatLoading.classList.remove('show');
-        isProcessing = false;
-        chatInput.disabled = false;
-        sendBtn.disabled = false;
-        micSmallBtn.disabled = false;
-        
-        console.error('Speech-to-text error:', err);
-        console.error('Error stack:', err.stack);
-        
-        showToast('⚠️ تبدیل صدا ناموفق: ' + err.message, 4000);
-        addMessage('system', '⚠️ متاسفانه صدای شما تشخیص داده نشد. لطفاً دوباره تلاش کنید یا پیام خود را تایپ کنید.');
-    });
-}
 
-// ===== Keyboard shortcut for chat (Ctrl+Shift+C) =====
+            if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+              console.error('Server returned HTML instead of JSON');
+              throw new Error('سرور صفحه HTML برگردانده است. مسیر API اشتباه است یا خطای 500 رخ داده است.');
+            }
+
+            try {
+              var data = JSON.parse(text);
+              console.log('Parsed JSON:', data);
+              return data;
+            } catch (e) {
+              console.error('Failed to parse JSON:', text.substring(0, 200));
+              throw new Error('پاسخ سرور JSON معتبر نیست: ' + text.substring(0, 100));
+            }
+          });
+        })
+        .then(function(data) {
+          console.log('Speech-to-text response:', data);
+
+          if (data.success && data.text) {
+            addMessage('user', data.text);
+            sendToChatAPI(data.text);
+          } else {
+            throw new Error(data.message || 'متن تبدیل شده دریافت نشد');
+          }
+        })
+        .catch(function(err) {
+          chatLoading.classList.remove('show');
+          isProcessing = false;
+          chatInput.disabled = false;
+          sendBtn.disabled = false;
+          micSmallBtn.disabled = false;
+
+          console.error('Speech-to-text error:', err);
+          showToast('⚠️ تبدیل صدا ناموفق: ' + err.message, 4000);
+          addMessage('system', '⚠️ متاسفانه صدای شما تشخیص داده نشد. لطفاً دوباره تلاش کنید یا پیام خود را تایپ کنید.');
+        });
+      }
+
+      // ===== Keyboard shortcut for chat (Ctrl+Shift+C) =====
       document.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
           e.preventDefault();
@@ -1998,9 +2002,6 @@ function sendChatAudioToServer(audioBlob) {
           closeModal();
         }
       });
-
-      // ===== Initial focus =====
-      // Focus input when modal opens (already handled in openModal)
 
     })();
   </script>
