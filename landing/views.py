@@ -110,3 +110,139 @@ def voice_assistant(request):
     except Exception as e:
         print(f"Error: {e}")
         return JsonResponse({'error': str(e)}, status=500)
+    
+
+
+
+
+from django.shortcuts import redirect
+import hashlib
+
+def verify(request):
+    res_code = request.POST.get("ResCode", "")
+    order_id = request.POST.get("SaleOrderId", "")
+    verify_sale_reference_id = request.POST.get("SaleReferenceId", "")
+
+    token = hashlib.md5(
+        f"MnuyyytAAAmnd77++{order_id}".encode()
+    ).hexdigest()
+
+    url = (
+        f"http://foodsoftonline.ir/py_behp_vrfy.php"
+        f"?f1={res_code}"
+        f"&f2={order_id}"
+        f"&f3={verify_sale_reference_id}"
+        f"&f4={token}"
+    )
+
+    return redirect(url)
+
+
+
+
+from django.http import HttpResponse
+import hashlib
+
+
+def mellat_gateway(request):
+    authority = request.GET.get("auth", "")
+    token = request.GET.get("token", "")
+    received_hash = request.GET.get("hsh", "")
+
+    expected_hash = hashlib.md5(
+        f"{token}{authority}GHUdjjjsSfg89++tytr".encode()
+    ).hexdigest()
+
+    if received_hash != expected_hash:
+        return HttpResponse(
+            """
+            <div style="width:500px;margin:auto;background:red;color:white;
+                        font-size:22px;text-align:center;margin-top:80px;
+                        height:50px;line-height:50px;">
+                در انتقال به درگاه پرداخت مشکلی بوجود آمد-5001
+            </div>
+            <div style="width:200px;margin:auto;">
+                <button onclick="window.history.go(-2);return false;"
+                        style="width:200px;height:50px;margin-top:20px;">
+                    بازگشت
+                </button>
+            </div>
+            """
+        )
+
+    return HttpResponse(f"""
+    <form id="myform"
+          action="https://bpm.shaparak.ir/pgwchannel/startpay.mellat"
+          method="POST">
+        <input type="hidden" name="RefId" value="{authority}">
+    </form>
+
+    <script>
+        document.getElementById("myform").submit();
+    </script>
+    """)
+
+
+
+
+
+
+
+from django.http import HttpResponse
+import hashlib
+
+
+def top_gateway(request):
+    token = request.GET.get("token", "")
+    hsh = request.GET.get("hsh", "")
+
+    expected_hash = hashlib.md5(
+        f"{token}GHUdjjjsSfg89++tytr".encode("utf-8")
+    ).hexdigest()
+
+    if hsh != expected_hash:
+        return HttpResponse("""
+            <div style="width:500px;margin:auto;background:red;color:white;
+                        font-size:22px;text-align:center;margin-top:80px;
+                        height:50px;line-height:50px;">
+                در انتقال به درگاه پرداخت مشکلی بوجود آمد - 5001
+            </div>
+        """)
+
+    return HttpResponse(f"""
+    <form id="paymentForm"
+          action="https://top.shaparak.ir/Payment/Index"
+          method="POST">
+
+        <input type="hidden" name="Token" value="{token}">
+
+    </form>
+
+    <script>
+        document.getElementById("paymentForm").submit();
+    </script>
+    """)
+
+
+
+
+from django.shortcuts import redirect
+import hashlib
+
+
+def top_callback(request):
+    status = request.POST.get("status", "")
+    token = request.POST.get("Token", "")
+    rrn = request.POST.get("RRN", "")
+
+    sign = hashlib.md5(
+        f"MnuyyytAAAmnd77++{token}".encode()
+    ).hexdigest()
+
+    return redirect(
+        f"http://foodsoftonline.ir/py_behp_vrfy.php"
+        f"?f1={status}"
+        f"&f2={token}"
+        f"&f3={rrn}"
+        f"&f4={sign}"
+    )
