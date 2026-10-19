@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'landing'
+    'landing',
+    'complaints'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,8 @@ STATIC_URL = 'static/'
 
 
 OPENAI_API_KEY = 'asd'
+
+
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

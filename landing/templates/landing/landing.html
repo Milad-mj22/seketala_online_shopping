@@ -1261,6 +1261,273 @@
     background: var(--gold-matte);
     border-radius: 4px;
   }
+
+
+
+
+
+
+
+  /* ========== Page Nav (header) ========== */
+  .page-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .page-nav button {
+    color: var(--black);
+    font-weight: 600;
+    font-size: .92rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background .25s var(--ease), color .25s var(--ease);
+  }
+  .site-header.scrolled .page-nav button {
+    color: var(--white);
+  }
+  .page-nav button:hover {
+    background: rgba(184, 144, 47, .15);
+    color: var(--gold-matte);
+  }
+  .site-header.scrolled .page-nav button:hover {
+    background: rgba(240, 199, 94, .15);
+    color: var(--gold-bright);
+  }
+
+  /* ========== Content Modal (Rules / Complaints) ========== */
+  .content-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(8, 8, 9, .65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s var(--ease), visibility .3s;
+  }
+  .content-modal.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .content-modal-box {
+    background: var(--white);
+    width: 100%;
+    max-width: 720px;
+    max-height: 88vh;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(30px) scale(.97);
+    transition: transform .35s var(--ease);
+    box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .5);
+  }
+  .content-modal.open .content-modal-box {
+    transform: translateY(0) scale(1);
+  }
+  .content-modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 26px;
+    background: var(--black);
+    color: var(--white);
+    flex-shrink: 0;
+    border-bottom: 2px solid var(--gold-matte);
+  }
+  .content-modal-head h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .content-modal-head .gold-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold-line);
+    box-shadow: 0 0 12px rgba(240, 199, 94, .8);
+  }
+  .content-modal-close {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .08);
+    color: var(--white);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .25s, transform .25s;
+  }
+  .content-modal-close:hover {
+    background: rgba(240, 199, 94, .25);
+    transform: rotate(90deg);
+  }
+  .content-modal-body {
+    padding: 28px 30px 34px;
+    overflow-y: auto;
+    line-height: 1.9;
+  }
+  .content-modal-body h3 {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--gold-matte);
+    margin: 22px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .content-modal-body h3:first-child {
+    margin-top: 0;
+  }
+  .content-modal-body h3::before {
+    content: '';
+    width: 6px;
+    height: 18px;
+    border-radius: 3px;
+    background: var(--gold-line);
+    flex-shrink: 0;
+  }
+  .content-modal-body p {
+    color: #444;
+    font-size: .95rem;
+    margin-bottom: 6px;
+  }
+  .content-modal-body ul {
+    padding-right: 20px;
+    margin-bottom: 6px;
+  }
+  .content-modal-body ul li {
+    color: #444;
+    font-size: .95rem;
+    margin-bottom: 6px;
+    position: relative;
+    padding-right: 16px;
+  }
+  .content-modal-body ul li::before {
+    content: '✦';
+    color: var(--gold-matte);
+    position: absolute;
+    right: 0;
+    font-size: .8rem;
+  }
+  .content-modal-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .content-modal-body::-webkit-scrollbar-track {
+    background: #f1efe9;
+  }
+  .content-modal-body::-webkit-scrollbar-thumb {
+    background: var(--gold-matte);
+    border-radius: 4px;
+  }
+
+  /* ========== Complaint Form (inside modal) ========== */
+  .complaint-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .complaint-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .complaint-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .complaint-form label {
+    font-weight: 700;
+    font-size: .88rem;
+    color: var(--black);
+  }
+  .complaint-form input,
+  .complaint-form select,
+  .complaint-form textarea {
+    font-family: inherit;
+    font-size: .92rem;
+    padding: 11px 14px;
+    border: 1.5px solid #e3ddca;
+    border-radius: var(--radius-sm);
+    background: #faf8f5;
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+    color: var(--black);
+  }
+  .complaint-form input:focus,
+  .complaint-form select:focus,
+  .complaint-form textarea:focus {
+    border-color: var(--gold-matte);
+    box-shadow: 0 0 0 3px rgba(184, 144, 47, .15);
+    background: var(--white);
+  }
+  .complaint-form textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+  .complaint-form .submit-btn {
+    background: var(--gold-line);
+    color: #1a1404;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-gold);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    margin-top: 6px;
+  }
+  .complaint-form .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold-lg);
+  }
+  .complaint-form .form-note {
+    font-size: .82rem;
+    color: var(--text-muted-dark);
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 680px) {
+    .page-nav button {
+      font-size: .82rem;
+      padding: 6px 10px;
+    }
+    .content-modal {
+      padding: 0;
+      align-items: flex-end;
+    }
+    .content-modal-box {
+      max-height: 92vh;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .content-modal-head {
+      padding: 18px 18px;
+    }
+    .content-modal-head h2 {
+      font-size: 1.1rem;
+    }
+    .content-modal-body {
+      padding: 20px 18px 26px;
+    }
+    .complaint-form .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -1282,6 +1549,12 @@
         <button class="btn-ghost">ورود</button>
         <button class="btn-outline-gold">ثبت‌نام</button>
       </nav> -->
+      <nav class="page-nav">
+        <button type="button" data-open-modal="rulesModal">قوانین ما</button>
+        <button type="button" data-open-modal="complaintsModal">شکایات</button>
+      </nav>
+
+
     </div>
   </header>
 
@@ -1429,6 +1702,14 @@
           </div>
         </div>
         <div class="footer-col">
+          <h5>اطلاعات</h5>
+          <ul>
+            <li><a href="#" data-open-modal="rulesModal">قوانین ما</a></li>
+            <li><a href="#" data-open-modal="complaintsModal">شکایات</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
           <h5>دسترسی سریع</h5>
           <ul>
             <li><a href="#top">صفحه اصلی</a></li>
@@ -1533,6 +1814,104 @@
 
     </div>
   </div>
+
+
+
+
+
+  <!-- ========== Rules Modal ========== -->
+  <div class="content-modal" id="rulesModal" role="dialog" aria-modal="true" aria-labelledby="rulesModalTitle">
+    <div class="content-modal-box">
+      <div class="content-modal-head">
+        <h2 id="rulesModalTitle"><span class="gold-dot"></span> قوانین ما</h2>
+        <button class="content-modal-close" type="button" data-close-modal aria-label="بستن">✕</button>
+      </div>
+      <div class="content-modal-body">
+        <h3>۱. شرایط عمومی</h3>
+        <p>با استفاده از خدمات رستوران سکه طلا، شما با کلیه قوانین مندرج در این صفحه موافقت می‌کنید. این قوانین ممکن است در آینده به‌روزرسانی شود و نسخه‌ی معتبر همیشه همین بخش است.</p>
+
+        <h3>۲. ثبت سفارش</h3>
+        <p>کاربران موظف‌اند هنگام ثبت سفارش، اطلاعات صحیح و کامل (نام، شماره تماس، آدرس دقیق) وارد نمایند. مسئولیت ارسال به آدرس اشتباه یا ناقص بر عهده‌ی مشتری است.</p>
+
+        <h3>۳. پرداخت</h3>
+        <p>پرداخت‌ها از طریق درگاه‌های بانکی امن انجام می‌شود. پس از تکمیل پرداخت، فاکتور سفارش برای شما صادر می‌گردد. در صورت کسر وجه و عدم ثبت سفارش، مبلغ حداکثر تا ۷۲ ساعت به حساب شما بازگردانده می‌شود.</p>
+
+        <h3>۴. ارسال و تحویل</h3>
+        <p>زمان تقریبی تحویل بین ۲۰ تا ۴۵ دقیقه در محدوده‌ی سرویس‌دهی است. در ساعات پرترافیک یا شرایط جوی نامساعد، ممکن است این زمان کمی افزایش یابد که از طریق پیامک اطلاع داده می‌شود.</p>
+
+        <h3>۵. بازگشت کالا</h3>
+        <ul>
+          <li>در صورت وجود نقص در سفارش، حداکثر تا ۲ ساعت پس از تحویل با پشتیبانی تماس بگیرید.</li>
+          <li>در صورت تأیید، سفارش اصلاح یا مبلغ آن بازگردانده خواهد شد.</li>
+          <li>غذاهای نیمه‌خورده مشمول بازگشت نیستند.</li>
+        </ul>
+
+        <h3>۶. حریم خصوصی</h3>
+        <p>اطلاعات شخصی شما تنها برای پردازش سفارش و بهبود خدمات استفاده می‌شود و در اختیار هیچ شخص ثالثی قرار نمی‌گیرد.</p>
+
+        <h3>۷. تغییر قوانین</h3>
+        <p>سکه طلا حق به‌روزرسانی این قوانین را برای بهبود خدمات محفوظ می‌دارد. تغییرات مهم از طریق همین صفحه اطلاع‌رسانی خواهد شد.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Complaints Modal ========== -->
+  <div class="content-modal" id="complaintsModal" role="dialog" aria-modal="true" aria-labelledby="complaintsModalTitle">
+    <div class="content-modal-box">
+      <div class="content-modal-head">
+        <h2 id="complaintsModalTitle"><span class="gold-dot"></span> ثبت شکایات</h2>
+        <button class="content-modal-close" type="button" data-close-modal aria-label="بستن">✕</button>
+      </div>
+      <div class="content-modal-body">
+        <p style="margin-bottom:16px">اگر از خدمات ما ناراضی هستید یا مشکلی در سفارش خود دارید، فرم زیر را تکمیل کنید. تیم پشتیبانی حداکثر تا ۴۸ ساعت با شما تماس خواهد گرفت.</p>
+
+        <form class="complaint-form" id="complaintForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cName">نام و نام خانوادگی</label>
+              <input type="text" id="cName" name="name" required placeholder="مثلاً رضا کریمی">
+            </div>
+            <div class="form-group">
+              <label for="cPhone">شماره تماس</label>
+              <input type="tel" id="cPhone" name="phone" required placeholder="۰۹۱۲۳۴۵۶۷۸۹">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cEmail">ایمیل (اختیاری)</label>
+              <input type="email" id="cEmail" name="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label for="cOrderId">شماره سفارش (اختیاری)</label>
+              <input type="text" id="cOrderId" name="orderId" placeholder="مثلاً SK-10234">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cSubject">موضوع شکایت</label>
+            <select id="cSubject" name="subject" required>
+              <option value="">انتخاب کنید...</option>
+              <option value="payment">مشکل در پرداخت</option>
+              <option value="delivery">مشکل در ارسال</option>
+              <option value="product">مشکل در کیفیت غذا</option>
+              <option value="support">مشکل با پشتیبانی</option>
+              <option value="other">سایر</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cMessage">متن شکایت</label>
+            <textarea id="cMessage" name="message" required placeholder="لطفاً مشکل خود را با جزئیات بنویسید..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">ارسال شکایت</button>
+          <p class="form-note">اطلاعات شما محرمانه است و تنها برای پیگیری شکایت استفاده می‌شود.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
 
   <!-- ========== Toast ========== -->
   <div class="toast" id="toastEl"></div>
@@ -1984,6 +2363,90 @@ function sendChatAudioToServer(audioBlob) {
     });
 }
 
+
+
+
+
+      // ===== Content Modals (Rules / Complaints) =====
+      var contentModals = document.querySelectorAll('.content-modal');
+
+      function openContentModal(id) {
+        var modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeContentModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // Open buttons (data-open-modal)
+      document.querySelectorAll('[data-open-modal]').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          var id = this.getAttribute('data-open-modal');
+          openContentModal(id);
+        });
+      });
+
+      // Close buttons & backdrop clicks
+      contentModals.forEach(function(modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) closeContentModal(modal);
+        });
+        modal.querySelectorAll('[data-close-modal]').forEach(function(btn) {
+          btn.addEventListener('click', function() { closeContentModal(modal); });
+        });
+      });
+
+      // ESC closes content modals (extend existing ESC handler behavior)
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          contentModals.forEach(function(modal) {
+            if (modal.classList.contains('open')) closeContentModal(modal);
+          });
+        }
+      });
+
+      // ===== Complaint Form Submit =====
+      var complaintForm = document.getElementById('complaintForm');
+      if (complaintForm) {
+        complaintForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          var name = document.getElementById('cName').value.trim();
+          var phone = document.getElementById('cPhone').value.trim();
+          var subject = document.getElementById('cSubject').value;
+          var message = document.getElementById('cMessage').value.trim();
+
+          if (!name || !phone || !subject || !message) {
+            showToast('⚠️ لطفاً فیلدهای ستاره‌دار را تکمیل کنید.', 3000);
+            return;
+          }
+
+          if (phone.replace(/\D/g, '').length < 10) {
+            showToast('⚠️ شماره تماس معتبر نیست.', 3000);
+            return;
+          }
+
+          // Demo: just show success. Replace with fetch('/api/complaints', ...) if backend exists
+          showToast('✅ شکایت شما با موفقیت ثبت شد. تا ۴۸ ساعت آینده با شما تماس می‌گیریم.', 4500);
+          complaintForm.reset();
+          closeContentModal(document.getElementById('complaintsModal'));
+        });
+      }
+
+
+
+
+
+
+
+
+
 // ===== Keyboard shortcut for chat (Ctrl+Shift+C) =====
       document.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
@@ -2004,6 +2467,177 @@ function sendChatAudioToServer(audioBlob) {
 
     })();
   </script>
+
+
+
+
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== CSRF helper =====
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  // ===== Toast =====
+  var toastEl = document.getElementById('toastEl');
+  var toastTimer = null;
+  function showToast(msg, duration) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toastEl.classList.remove('show');
+    }, duration || 2800);
+  }
+
+  // ===== Content Modals (Rules / Complaints) =====
+  var contentModals = document.querySelectorAll('.content-modal');
+
+  function openContentModal(id) {
+    var modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeContentModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      openContentModal(this.getAttribute('data-open-modal'));
+    });
+  });
+
+  contentModals.forEach(function(modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeContentModal(modal);
+    });
+    modal.querySelectorAll('[data-close-modal]').forEach(function(btn) {
+      btn.addEventListener('click', function() { closeContentModal(modal); });
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      contentModals.forEach(function(modal) {
+        if (modal.classList.contains('open')) closeContentModal(modal);
+      });
+    }
+  });
+
+  // ============================================================
+  // ✅ SUBMIT COMPLAINT → Django backend
+  // ============================================================
+  var complaintForm = document.getElementById('complaintForm');
+  if (complaintForm) {
+    complaintForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // ---- Collect fields ----
+      var name    = document.getElementById('cName').value.trim();
+      var phone   = document.getElementById('cPhone').value.trim();
+      var email   = document.getElementById('cEmail').value.trim();
+      var orderId = document.getElementById('cOrderId').value.trim();
+      var subject = document.getElementById('cSubject').value;
+      var message = document.getElementById('cMessage').value.trim();
+
+      // ---- Client-side validation ----
+      if (!name || !phone || !subject || !message) {
+        showToast('⚠️ لطفاً فیلدهای ستاره‌دار را تکمیل کنید.', 3000);
+        return;
+      }
+      if (phone.replace(/\D/g, '').length < 10) {
+        showToast('⚠️ شماره تماس معتبر نیست.', 3000);
+        return;
+      }
+
+      // ---- Button state ----
+      var submitBtn = complaintForm.querySelector('.submit-btn');
+      var originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'در حال ارسال...';
+
+      // ---- Send to Django ----
+      fetch('/complaints/api/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+          name: name,
+          phone: phone,
+          email: email,
+          order_id: orderId,
+          subject: subject,
+          message: message
+        })
+      })
+      .then(function(res) { return res.json().then(function(d) { return { status: res.status, data: d }; }); })
+      .then(function(result) {
+        var data = result.data;
+
+        if (data.success) {
+          // ---- Success ----
+          showToast('✅ ' + data.message, 4500);
+          complaintForm.reset();
+          closeContentModal(document.getElementById('complaintsModal'));
+
+          // 👇 برگشت به صفحه اصلی (بالای صفحه)
+          setTimeout(function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // اگر می‌خواید واقعاً reload بشه:
+            // window.location.href = '/';
+          }, 500);
+        } else {
+          // ---- Server error ----
+          var errMsg = data.message || 'خطا در ثبت شکایت';
+          if (data.errors) {
+            var firstField = Object.keys(data.errors)[0];
+            if (firstField) errMsg += ' — ' + data.errors[firstField];
+          }
+          showToast('⚠️ ' + errMsg, 4000);
+        }
+      })
+      .catch(function(err) {
+        console.error('Complaint error:', err);
+        showToast('❌ خطا در ارتباط با سرور', 3500);
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      });
+    });
+  }
+
+})();
+</script>
+
+
+
+
+
+
+
 
 </body>
 </html>
