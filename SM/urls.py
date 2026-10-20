@@ -19,8 +19,17 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.sitemaps.views import sitemap
+from landing.sitemaps import StaticViewSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing.urls')),         # صفحه اصلی
     path('complaints/', include('complaints.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

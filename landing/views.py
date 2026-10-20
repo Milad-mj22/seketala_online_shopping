@@ -246,3 +246,19 @@ def top_callback(request):
         f"&f3={rrn}"
         f"&f4={sign}"
     )
+
+
+
+
+from django.http import HttpResponse
+from django.views.decorators.http import require_GET
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",  # مسیر ادمین را مسدود کنید
+        "Disallow: /private/", # هر مسیر خصوصی دیگری
+        f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
