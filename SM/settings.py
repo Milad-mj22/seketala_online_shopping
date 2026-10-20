@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lwpo#d825w-h4^t7&m)wd#(6mj26zkg425c8j#&93gmtdox@=v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',   # ← add
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,7 +119,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Destination for collectstatic (production)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Project-wide static folder (optional, but recommended)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 OPENAI_API_KEY = 'asd'
 

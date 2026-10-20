@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -1567,13 +1568,14 @@
         <h1 class="reveal">سفارش طلایی<br><span class="gold-text">تحویل فوری</span></h1>
         <p class="hero-sub reveal">طعم اصیل، مواد تازه و کیفیت طلایی؛ سفارش شما در کمتر از ۲۰ دقیقه به دستتان می‌رسد.</p>
         <div class="hero-actions reveal">
-          <a href="/menu" class="btn-cta" id="ctaOrder">ثبت سفارش آنلاین</a>
+          <a href="http://online.seketalashop.ir/mnu/357/SuqUx8Lz34" class="btn-cta" id="ctaOrder">ثبت سفارش آنلاین</a>
           <button class="btn-outline-gold" id="ctaVoiceHero">💬 چت با سکه طلا</button>
         </div>
       </div>
       <div class="hero-image reveal">
         <div class="coin-frame">
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80" alt="برگر طلایی سکه طلا">
+          <img src="{% static 'landing/images/burger-golden.jpeg' %}" alt="برگر طلایی سکه طلا">
+          
           <div class="coin-badge">۱۰۰٪<br>تازه</div>
         </div>
       </div>
@@ -1622,35 +1624,35 @@
         <div class="menu-grid reveal-stagger">
           <article class="menu-card reveal" style="--i:0">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=75" alt="برگر طلایی">
-              <div class="menu-price">۱۸۹<br>هزار</div>
+              <img src="{% static 'landing/images/burger-golden.jpeg' %}" alt="برگر طلایی سکه طلا">
+
             </div>
             <div class="menu-card-body"><h4>برگر طلایی</h4><span>پنیر چدار، سس مخصوص</span></div>
           </article>
           <article class="menu-card reveal" style="--i:1">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=75" alt="مرغ سرخ‌شده">
-              <div class="menu-price">۱۶۵<br>هزار</div>
+              <img src="{% static 'landing/images/sookhari.PNG' %}" alt="مرغ سرخ‌شده">
+
             </div>
             <div class="menu-card-body"><h4>مرغ سوخاری سکه‌ای</h4><span>سوخاری ترد و خوش‌طعم</span></div>
           </article>
           <article class="menu-card reveal" style="--i:2">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=75" alt="پیتزا">
-              <div class="menu-price">۲۴۹<br>هزار</div>
+              <img src="{% static 'landing/images/pizza.jpeg' %}" alt="پیتزا">
+
             </div>
-            <div class="menu-card-body"><h4>پیتزا سلطنتی</h4><span>پپرونی و قارچ تازه</span></div>
+            <div class="menu-card-body"><h4>پیتزا بیف ترک</h4><span>گوشت تازه</span></div>
           </article>
           <article class="menu-card reveal" style="--i:3">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=500&q=75" alt="سیب‌زمینی سرخ‌شده">
-              <div class="menu-price">۶۹<br>هزار</div>
+              <img src="{% static 'landing/images/sib.jpeg' %}" alt="سیب‌زمینی سرخ‌شده">
+
             </div>
             <div class="menu-card-body"><h4>سیب‌زمینی طلایی</h4><span>سرخ‌شده با ادویه مخصوص</span></div>
           </article>
         </div>
         <div class="see-all-wrap reveal">
-          <a href="/menu" class="btn-outline-gold see-all-link">مشاهده منوی کامل</a>
+          <a href="https://menu.seketalashop.ir" class="btn-outline-gold see-all-link">مشاهده منوی کامل</a>
         </div>
       </div>
     </section>
@@ -1666,17 +1668,17 @@
           <div class="testi-card reveal" style="--i:0">
             <div class="testi-stars">★★★★★</div>
             <p>سرعت تحویل واقعاً عالی بود و برگر هنوز داغ بود وقتی رسید. کیفیت گوشت و سس مخصوصش فوق‌العاده‌ست.</p>
-            <div class="testi-user"><div class="testi-avatar">ر.ک</div><div><strong>رضا کریمی</strong><span>تهران</span></div></div>
+            <div class="testi-user"><div class="testi-avatar">ر.ک</div><div><strong>رضا کریمی</strong></div></div>
           </div>
           <div class="testi-card reveal" style="--i:1">
             <div class="testi-stars">★★★★★</div>
             <p>سفارش صوتی‌شون رو امتحان کردم، خیلی راحت بود؛ فقط حرف زدم و سفارش ثبت شد. خیلی به‌روز و کاربردیه.</p>
-            <div class="testi-user"><div class="testi-avatar">س.م</div><div><strong>سارا محمدی</strong><span>کرج</span></div></div>
+            <div class="testi-user"><div class="testi-avatar">س.م</div><div><strong>سارا محمدی</strong></div></div>
           </div>
           <div class="testi-card reveal" style="--i:2">
             <div class="testi-stars">★★★★☆</div>
-            <p>پیتزای سلطنتی‌شون محشره و همیشه تازه به‌نظر می‌رسه. فقط امیدوارم تنوع منو رو هم بیشتر کنن.</p>
-            <div class="testi-user"><div class="testi-avatar">ع.ن</div><div><strong>علی نوری</strong><span>اصفهان</span></div></div>
+            <p>پیتزا شون محشره و همیشه تازه به‌نظر می‌رسه. فقط امیدوارم تنوع منو رو هم بیشتر کنن.</p>
+            <div class="testi-user"><div class="testi-avatar">ع.ن</div><div><strong>علی نوری</strong></div></div>
           </div>
         </div>
       </div>
@@ -1721,21 +1723,21 @@
         <div class="footer-col">
           <h5>تماس با ما</h5>
           <ul>
-            <li>۰۲۱-۸۸۸۸۸۸۸۸</li>
-            <li>info@sekkehtala.ir</li>
-            <li>پاسخگویی: ۲۴ ساعته</li>
+            <li>031-91008100</li>
+            <li>info@sekkehtalashop.ir</li>
+            <li>پاسخگویی : ۶ تا ۱۲ شب</li>
           </ul>
         </div>
         <div class="footer-col">
           <h5>آدرس</h5>
           <ul>
-            <li>تهران، خیابون ولیعصر</li>
-            <li>پلاک ۱۲، طبقه همکف</li>
+            <li>اصفهان، خیابان وحید چهار راه خاقانی</li>
+            <li>فست فود سکه طلا</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© ۱۴۰۴ سکه طلا. تمامی حقوق محفوظ است.</span>
+        <span>© 1405 سکه طلا. تمامی حقوق محفوظ است.</span>
         <span>طراحی شده با ❤ برای عاشقان فست‌فود</span>
       </div>
     </div>
